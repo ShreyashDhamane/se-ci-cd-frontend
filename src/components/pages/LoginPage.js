@@ -16,8 +16,10 @@ export default function SignInPage() {
       axios
         .post(`${process.env.REACT_APP_server_url}/login`, userData)
         .then((res) => {
-          console.log("login");
-          console.log(res.status);
+          // console.log("login");
+          // console.log();
+          localStorage.setItem("token", res.data.token);
+          // document.cookie = `token=${res.data.token}`;
           navigate("/home");
         })
         .catch((err) => {

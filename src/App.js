@@ -10,6 +10,7 @@ import HomePage from "./components/pages/HomePage";
 import "./App.css";
 
 export default function App() {
+  // localStorage.setItem("token", "");
   return (
     <div>
       <Router>
