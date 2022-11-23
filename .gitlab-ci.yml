@@ -1,0 +1,32 @@
+image: node:latest
+
+cache:
+  paths:
+    - node_modules
+
+stages:
+  - build
+  - test
+  - deploy
+
+build:
+  stage: build
+  script:
+    - npm install
+    - npm run build
+
+test:
+  stage: test
+  script:
+    - npm run test
+  dependencies:
+    - build
+
+deploy:
+  stage: deploy
+  dependencies:
+    - test
+  script:
+    - npm run build
+    - npm i -g netlify-cli
+    - npx netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod
